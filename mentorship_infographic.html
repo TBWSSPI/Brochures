@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Trebuchet MS', Arial, sans-serif;
+    font-size: 16px;
+    color: #4a4a5a;
+    background: #fdf9f0;
+    width: 860px;
+    margin: 0 auto;
+  }
+
+  /* HEADER */
+  .header {
+    background: #092869;
+    padding: 24px 36px;
+    border-bottom: 4px solid #cd9700;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .header img.logo { height: 56px; filter: brightness(0) invert(1); flex-shrink: 0; }
+  .header-divider { width: 2px; background: #cd9700; align-self: stretch; flex-shrink: 0; }
+  .header-text { padding-left: 4px; }
+  .header-text h1 { font-family: Georgia, serif; font-size: 26px; font-weight: bold; color: white; line-height: 1.25; }
+  .header-text .sub { font-size: 12px; font-weight: bold; color: #cd9700; letter-spacing: 2px; text-transform: uppercase; margin-top: 4px; }
+
+  /* INTRO */
+  .intro { background: white; padding: 20px 36px; border-bottom: 1px solid #e0e0e8; }
+  .intro p { font-size: 15px; line-height: 1.65; }
+  .intro b { color: #092869; }
+
+  /* SECTION HEADER */
+  .section-head { padding: 16px 36px 8px; }
+  .section-label { font-size: 12px; font-weight: bold; letter-spacing: 2.5px; text-transform: uppercase; color: #cd9700; }
+
+  /* ROADMAP - flexbox */
+  .roadmap { padding: 0 36px; display: flex; gap: 8px; align-items: stretch; }
+
+  .year-card { background: white; border-radius: 3px; box-shadow: 0 1px 5px rgba(9,40,105,0.08); flex: 1; display: flex; flex-direction: column; }
+  .yh { padding: 10px 14px; display: flex; align-items: center; gap: 6px; }
+  .yh-1 { background: #092869; }
+  .yh-2 { background: #1a3a7a; }
+  .yh-3 { background: #cd9700; }
+  .yn { font-family: Georgia, serif; font-size: 28px; font-weight: 900; line-height: 1; opacity: 0.25; flex-shrink: 0; color: white; }
+  .yn-3 { color: #092869; }
+  .yt { font-size: 12px; font-weight: bold; color: white; text-transform: uppercase; letter-spacing: 0.5px; line-height: 1.3; }
+  .yt-3 { color: #092869; }
+  .yb { padding: 12px 14px; flex: 1; }
+  .yb p { font-size: 13px; line-height: 1.55; color: #4a4a5a; margin-bottom: 10px; }
+  .bench-label { font-size: 11px; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; color: #cd9700; margin-bottom: 6px; border-top: 1px solid #eee; padding-top: 8px; }
+  .bench-item { font-size: 13px; color: #4a4a5a; line-height: 1.45; margin-bottom: 4px; padding-left: 12px; position: relative; }
+  .bench-item::before { content: "\2022"; color: #cd9700; position: absolute; left: 0; }
+
+  /* BENEFITS - flexbox */
+  .benefits { padding: 0 36px; display: flex; gap: 8px; align-items: stretch; }
+
+  .fp-card { background: white; border-radius: 3px; box-shadow: 0 1px 5px rgba(9,40,105,0.08); flex: 1; display: flex; flex-direction: column; }
+  .fph { padding: 9px 14px; background: #f0f0f4; border-bottom: 2px solid #cd9700; border-top: 2px solid #cd9700; }
+  .fph-title { font-size: 13px; font-weight: bold; color: #092869; text-transform: uppercase; letter-spacing: 0.8px; }
+  .fpb { padding: 12px 14px; flex: 1; }
+  .fp-item { font-size: 14px; color: #4a4a5a; line-height: 1.5; margin-bottom: 8px; padding-left: 14px; position: relative; }
+  .fp-item:last-child { margin-bottom: 0; }
+  .fp-item::before { content: "\2022"; color: #cd9700; position: absolute; left: 0; font-size: 16px; line-height: 1.2; }
+  .fp-item b { color: #092869; }
+
+  /* PHILOSOPHY */
+  .philosophy { margin: 10px 36px 0; background: #092869; border-radius: 3px; padding: 16px 20px; display: flex; gap: 0; }
+  .phil-item { flex: 1; padding-left: 12px; border-left: 2px solid #cd9700; padding-right: 16px; }
+  .phil-head { font-size: 11px; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; color: #cd9700; margin-bottom: 4px; }
+  .phil-body { font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.82); }
+
+  /* INVESTMENT */
+  .investment { margin: 10px 36px 0; background: #fdf9f0; border: 1px solid #ddd; border-radius: 3px; padding: 16px 20px; display: flex; gap: 0; align-items: center; }
+  .invest-left { width: 185px; flex-shrink: 0; text-align: center; border-right: 1px solid #ddd; padding-right: 20px; }
+  .invest-right { padding-left: 20px; flex: 1; }
+  .figure { font-family: Georgia, serif; font-size: 42px; font-weight: 900; color: #092869; line-height: 1; }
+  .per { font-size: 11px; color: #7a7a8a; text-transform: uppercase; letter-spacing: 1.5px; margin-top: 3px; }
+  .term { display: inline-block; background: #cd9700; color: white; font-size: 10px; font-weight: bold; letter-spacing: 1px; text-transform: uppercase; padding: 2px 8px; border-radius: 2px; margin-top: 6px; }
+  .invest-right p { font-size: 14px; line-height: 1.6; color: #4a4a5a; margin-bottom: 8px; }
+  .invest-right p:last-child { margin-bottom: 0; }
+  .invest-right b { color: #092869; }
+
+  /* DIVERSITY */
+  .diversity { margin: 8px 36px 0; border-left: 4px solid #cd9700; padding: 10px 14px; background: white; }
+  .diversity p { font-size: 14px; line-height: 1.6; color: #4a4a5a; font-style: italic; }
+  .diversity b { color: #092869; font-style: normal; }
+
+  /* FOOTER */
+  .footer { margin: 14px 0 0; background: #092869; padding: 16px 36px; border-top: 4px solid #cd9700; display: flex; align-items: center; justify-content: space-between; }
+  .footer-text p { font-size: 12px; color: rgba(255,255,255,0.6); margin-bottom: 2px; }
+  .footer-text a { font-size: 14px; color: #cd9700; text-decoration: none; font-weight: bold; }
+  .footer-logo img { height: 44px; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <img class="logo" src="sspi_logo.png" alt="SSPI">
+  <div class="header-divider"></div>
+  <div class="header-text">
+    <h1>Mentorship Infrastructure<br>for the Space &amp; Satellite Industry</h1>
+    <div class="sub">Founding Partner Invitation</div>
+  </div>
+</div>
+
+<div class="intro">
+  <p>SSPI is building the first industry-wide architecture to <b>support, develop, and recognize the mentors</b> who strengthen the space and satellite talent pipeline. This is not a matching program. It is shared infrastructure that transitions mentorship from an informal practice to a <b>formal, portable professional credential</b> shaped by diverse industry leaders.</p>
+</div>
+
+<div class="section-head"><span class="section-label">Three-Year Program Roadmap</span></div>
+
+<div class="roadmap">
+  <div class="year-card">
+    <div class="yh yh-1"><span class="yn">1</span><span class="yt">Building<br>the Foundation</span></div>
+    <div class="yb">
+      <p>Establish the mentor pool, deliver development workshops, and work with founding partners to draft the credential framework.</p>
+      <div class="bench-label">Year One Commitments</div>
+      <div class="bench-item">Active mentor pool established</div>
+      <div class="bench-item">2&ndash;3 mentorship development workshops delivered</div>
+      <div class="bench-item">Advisory conversations completed with all founding partners</div>
+    </div>
+  </div>
+  <div class="year-card">
+    <div class="yh yh-2"><span class="yn">2</span><span class="yt">Deepening<br>Engagement</span></div>
+    <div class="yb">
+      <p>Refine the curriculum, expand the workshop series, and build mentee feedback mechanisms. Credential framework validated with partners.</p>
+      <div class="bench-label">Building on Year One</div>
+      <div class="bench-item">Expanded workshop series</div>
+      <div class="bench-item">Mentee feedback loop active</div>
+      <div class="bench-item">Credential standards validated</div>
+    </div>
+  </div>
+  <div class="year-card">
+    <div class="yh yh-3"><span class="yn yn-3">3</span><span class="yt yt-3">Launching<br>the Credential</span></div>
+    <div class="yb">
+      <p>Official certification launches. Founding participants who have been engaged since Year One qualify for inaugural recognition based on their accumulated participation.</p>
+      <div class="bench-label">The Payoff</div>
+      <div class="bench-item">Credential live and industry-recognized</div>
+      <div class="bench-item">Founding participants qualify as inaugural certified mentors</div>
+    </div>
+  </div>
+</div>
+
+<div class="section-head"><span class="section-label">What Founding Partners Receive</span></div>
+
+<div class="benefits">
+  <div class="fp-card">
+    <div class="fph"><div class="fph-title">Participation &amp; Co-Design</div></div>
+    <div class="fpb">
+      <div class="fp-item">Your designated employees join the mentor pool, participate in development workshops and roundtables, and help shape the program through their engagement and feedback</div>
+      <div class="fp-item">Attend and help shape mentorship development workshops as they are built and tested</div>
+      <div class="fp-item">Advisory seat in the conversations defining what the credential should require</div>
+      <div class="fp-item"><b>Employees who stay engaged through the three-year build arrive already credentialed</b> &mdash; their participation counts from day one</div>
+      <div class="fp-item">Founding Partner status is not available once the program is established</div>
+    </div>
+  </div>
+  <div class="fp-card">
+    <div class="fph"><div class="fph-title">Recognition</div></div>
+    <div class="fpb">
+      <div class="fp-item">Named as a Founding Partner across all program materials and SSPI platforms</div>
+      <div class="fp-item">Credited in the SSPI Mentorship Library as a program co-creator</div>
+      <div class="fp-item">Recognized in public announcements about the program launch</div>
+      <div class="fp-item">Recognition reflects your organization&rsquo;s investment in industry talent development</div>
+    </div>
+  </div>
+</div>
+
+<div class="philosophy">
+  <div class="phil-item">
+    <div class="phil-head">One Credential</div>
+    <div class="phil-body">The standard is the same regardless of context. Curriculum may vary. The credential belongs to the mentor and travels with them.</div>
+  </div>
+  <div class="phil-item" style="margin-left:16px;">
+    <div class="phil-head">Practice, Not Milestone</div>
+    <div class="phil-body">Maintaining the credential requires ongoing participation. Mentorship is something you continue, not something you complete.</div>
+  </div>
+  <div class="phil-item" style="margin-left:16px; padding-right:0;">
+    <div class="phil-head">Recognition Follows Practice</div>
+    <div class="phil-body">The credential finds the people doing the work &mdash; at every level, not only those who are already visible.</div>
+  </div>
+</div>
+
+<div class="section-head"><span class="section-label">The Investment</span></div>
+
+<div class="investment">
+  <div class="invest-left">
+    <div class="figure">$7,500</div>
+    <div class="per">Founding Partner</div>
+    <div class="term">Year One</div>
+  </div>
+  <div class="invest-right">
+    <p>This is a <b>one-year investment</b>. SSPI returns each year with progress against the benchmarks above and a proposal for what comes next. You are not being asked to commit beyond Year One.</p>
+    <p>We invite funding consideration from <b>workforce development, HR, and foundation budgets</b>. We are open to a conversation about what works for your organization.</p>
+    <p>This is not a sponsorship in exchange for logo placement. It is a genuine working partnership in building something the industry needs, with your people at the table while the standards are being written.</p>
+  </div>
+</div>
+
+<div class="diversity">
+  <p><b>A deliberate founding cohort.</b> We are intentionally seeking founding partners from across the industry &mdash; large and small, established and emerging, domestic and international &mdash; because the credential will only be as strong as the breadth of perspective that shaped it.</p>
+</div>
+
+<div class="footer">
+  <div class="footer-text">
+    <p>To discuss founding partnership</p>
+    <a href="mailto:tbond-williams@sspi.org">Tamara Bond-Williams &nbsp;|&nbsp; www.sspi.org</a>
+  </div>
+  <div class="footer-logo"><img src="ssf_logo.png" alt="Space &amp; Satellite Futures"></div>
+</div>
+
+</body>
+</html>
